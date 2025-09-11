@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "reduxtheory/2_ReduxInternals.md",
+                "file": "reduxtheory/4_ReduxInReact.md",
                 "mode": "preview",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "2_ReduxInternals"
+              "title": "4_ReduxInReact"
             }
           }
         ]
@@ -94,7 +94,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "reduxtheory/2_ReduxInternals.md",
+                "file": "reduxtheory/4_ReduxInReact.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -104,7 +104,7 @@
                 "unlinkedCollapsed": true
               },
               "icon": "links-coming-in",
-              "title": "Backlinks for 2_ReduxInternals"
+              "title": "Backlinks for 4_ReduxInReact"
             }
           },
           {
@@ -113,12 +113,12 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "reduxtheory/2_ReduxInternals.md",
+                "file": "reduxtheory/4_ReduxInReact.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               },
               "icon": "links-going-out",
-              "title": "Outgoing links from 2_ReduxInternals"
+              "title": "Outgoing links from 4_ReduxInReact"
             }
           },
           {
@@ -142,13 +142,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "reduxtheory/2_ReduxInternals.md",
+                "file": "reduxtheory/4_ReduxInReact.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "Outline of 2_ReduxInternals"
+              "title": "Outline of 4_ReduxInReact"
             }
           }
         ]
@@ -171,9 +171,11 @@
   },
   "active": "8d2b42011807c51d",
   "lastOpenFiles": [
+    "reduxtheory/3_SubUnsub.md",
+    "reduxtheory/4_ReduxInReact.md",
+    "reduxtheory/2_ReduxInternals.md",
     "basic/script.js~",
     "reduxtheory/1_StoreCreation.md",
-    "reduxtheory/2_ReduxInternals.md",
     "reduxtheory/0_CoreConcept.md"
   ]
 }
