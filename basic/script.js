@@ -8,8 +8,6 @@ const ORDER_PIZZA = "ORDER_PIZZA";
 //   shop_name: "Pizza shop",
 // };
 
-// Action () => {
-
 function orderPizza() {
   return {
     type: ORDER_PIZZA,
@@ -37,6 +35,22 @@ const reducer = (state = initialState, action) => {
   }
 };
 
+// Store needs to hold application state
 const store = createStore(reducer); // why not state ? coz reducer alrey has initialState
 
-console.log(store.getState());
+// methods exposed by store
+console.log(store);
+
+// Register listener
+const unsubscribe = store.subscribe(() =>
+  console.log("Updated state", store.getState()),
+);
+
+// dispatch action , Allows state to updated
+store.dispatch(orderPizza());
+store.dispatch(orderPizza());
+store.dispatch(orderPizza());
+
+unsubscribe();
+
+store.dispatch(orderPizza());
