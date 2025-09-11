@@ -2,16 +2,29 @@ const redux = require("redux");
 const createStore = redux.createStore;
 
 const ORDER_PIZZA = "ORDER_PIZZA";
+const ORDER_BURGER = "ORDER_BURGER";
+const ADD_TOPPINGS = "ADD_TOPPINGS";
 
-// const action = {
-//   type: ORDER_PIZZA,
-//   shop_name: "Pizza shop",
-// };
+// actions
 
 function orderPizza() {
   return {
     type: ORDER_PIZZA,
     shop_name: "Pizza shop",
+  };
+}
+
+function orderBurger() {
+  return {
+    type: ORDER_BURGER,
+    shop_name: "Burger shop",
+  };
+}
+
+function addToppings(topping) {
+  return {
+    type: ADD_TOPPINGS,
+    topping,
   };
 }
 
@@ -29,6 +42,16 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         pizzaBase: state.pizzaBase - 1,
+      };
+    case ORDER_BURGER:
+      return {
+        ...state,
+        burgerBuns: state.burgerBuns - 1,
+      };
+    case ADD_TOPPINGS:
+      return {
+        ...state,
+        toppings: [...state.toppings, action.topping],
       };
 
     default:
@@ -51,6 +74,8 @@ const unsubscribe = store.subscribe(() =>
 store.dispatch(orderPizza());
 store.dispatch(orderPizza());
 store.dispatch(orderPizza());
+store.dispatch(orderBurger());
+store.dispatch(addToppings("matata"));
 
 unsubscribe();
 
