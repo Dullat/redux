@@ -17,7 +17,9 @@ const PostsList = () => {
           <article key={post.id}>
             <h3>{post.title}</h3>
             <p>{post.content}</p>
-            <p>{author?.name || "uknown"}</p>
+            <p>
+              by {author?.name || "uknown"} at {post.time}
+            </p>
           </article>
         );
       })}
