@@ -1,18 +1,17 @@
-import { createSlice, nanoid } from "@reduxjs/toolkit";
+import { createSlice, nanoid, createAsyncThunk } from "@reduxjs/toolkit";
+import axios from "axios";
 import { sub } from "date-fns";
 
-const initialState = [
-  {
-    id: "1",
-    title: "Learning Redux toolkit",
-    content: "I am learning redux toolkit",
-  },
-  {
-    id: "2",
-    title: "Learning Cloud express",
-    content: "I am learning cloud express",
-  },
-];
+const initialState = {
+  posts: [],
+  status: "idle",
+  error: null,
+};
+
+export const fetchPosts = createAsyncThunk("posts/fetchPosts", async () => {
+  const response = await axios.get("http://jsomplaceholder.typicode.com/posts");
+  return [...response.data];
+});
 
 const postsSlice = createSlice({
   name: "posts",
@@ -20,7 +19,7 @@ const postsSlice = createSlice({
   reducers: {
     postAdded: {
       reducer(state, action) {
-        state.push(action.payload); // immer js taking care under the hood , it creating new state
+        state.posts.push(action.payload); // immer js taking care under the hood , it creating new state
       },
       prepare(title, content, userId) {
         return {
@@ -39,6 +38,6 @@ const postsSlice = createSlice({
 
 export const { postAdded } = postsSlice.actions;
 
-export const selectAllPosts = (state) => state.posts;
+export const selectAllPosts = (state) => state.posts.posts;
 
 export default postsSlice.reducer;
