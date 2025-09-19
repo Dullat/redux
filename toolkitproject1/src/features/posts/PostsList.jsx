@@ -1,11 +1,18 @@
-import { useSelector } from "react-redux";
-import { selectAllPosts } from "./postsSlice";
+import { useSelector, useDispatch } from "react-redux";
+import { selectAllPosts, reactionAdded } from "./postsSlice";
 import { selectAllUsers } from "../users/usersSlice";
 
 const PostsList = () => {
-  const posts = useSelector(selectAllPosts);
+  const posts = useSelector(selectAllPosts)
+    .slice()
+    .sort((a, b) => b.date.localeCompare(a.date)); // sort by date
   const users = useSelector(selectAllUsers);
-  console.log(users, posts);
+  console.log(users, posts, "posts");
+
+  const dispatch = useDispatch();
+  const handleReactions = (id, reaction) => {
+    dispatch(reactionAdded({ postId: id, reaction: reaction }));
+  };
 
   return (
     <section>
@@ -18,8 +25,13 @@ const PostsList = () => {
             <h3>{post.title}</h3>
             <p>{post.content}</p>
             <p>
-              by {author?.name || "uknown"} at {post.time}
+              by {author?.name || "uknown"} at {post.date}
             </p>
+            {Object.entries(post.reactions).map(([key, value]) => (
+              <button onClick={() => handleReactions(post.id, key)}>
+                {key}: {value}{" "}
+              </button>
+            ))}
           </article>
         );
       })}
