@@ -10,7 +10,7 @@ const AddPostForm = () => {
 
   const dispatch = useDispatch();
 
-  const users = useSelector((state) => state.users);
+  const users = useSelector((state) => state.users.users);
 
   const handleSubmit = (e) => {
     e.preventDefault();
