@@ -1,14 +1,13 @@
 import { useState } from "react";
-import PostsList from "./features/posts/PostsList";
-import AddPostForm from "./features/posts/AddPostForm";
+import { Outlet } from "react-router-dom";
 
 function App() {
   const [count, setCount] = useState(0);
 
   return (
     <main>
-      <AddPostForm />
-      <PostsList />
+      <h1>Blog Project</h1>
+      <Outlet />
     </main>
   );
 }
