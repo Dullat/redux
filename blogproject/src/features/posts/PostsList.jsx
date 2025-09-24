@@ -8,6 +8,7 @@ import {
 } from "./postsSlice";
 import { selectAllUsers } from "../users/usersSlice";
 import { useEffect } from "react";
+import { Link } from "react-router-dom";
 
 const PostsList = () => {
   let posts = useSelector(selectAllPosts)
@@ -44,18 +45,20 @@ const PostsList = () => {
       {posts.map((post) => {
         const author = users.find((user) => user.id === post.userId);
         return (
-          <article key={post.id}>
-            <h3>{post.title}</h3>
-            <p>{post.content}</p>
-            <p>
-              by {author?.name || "uknown"} at {post.date}
-            </p>
-            {Object.entries(post.reactions).map(([key, value]) => (
-              <button key={key} onClick={() => handleReactions(post.id, key)}>
-                {key}: {value}{" "}
-              </button>
-            ))}
-          </article>
+          <Link to={`/post/${post.id}`} key={post.id}>
+            <article>
+              <h3>{post.title}</h3>
+              <p>{post.content}</p>
+              <p>
+                by {author?.name || "uknown"} at {post.date}
+              </p>
+              {Object.entries(post.reactions).map(([key, value]) => (
+                <button key={key} onClick={() => handleReactions(post.id, key)}>
+                  {key}: {value}{" "}
+                </button>
+              ))}
+            </article>
+          </Link>
         );
       })}
     </section>
