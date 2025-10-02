@@ -98,6 +98,28 @@ export const extendedApiSlice = apiSlice.injectEndpoints({
       }),
       invalidateTags: (result, error, arg) => [{ type: "Post", id: arg.id }],
     }),
+    // optimistic updatePost
+    addReaction: builder.mutation({
+      query: ({postId, reactions}) = ({
+        url: `posts/${postId}`,
+        method: 'PATCH',
+        body: {reactions}
+      }),
+      async onQueryStarted({postId, reactions}, {dispatch, queryFulfilled}) {
+        const patchResult = dispatch(
+          extendedApiSlice.util.updateQueryData('getPosts', undefined, draft => { // trying to updata the cahch named getPosts
+            const post = draft.entities[postId]
+            if(post) post.reactions = reactions
+          })
+        )
+
+        try {
+          await queryFulfilled
+        } catch {
+          patchResult.undo()
+        }
+      }
+    })
   }),
 });
 
@@ -107,6 +129,7 @@ export const {
   useUpdatePostMutation,
   useAddNewPostMutation,
   useDeletePostMutation,
+  useAddReactionMutation
 } = extendedApiSlice;
 
 export const selectPostsResult = extendedApiSlice.endpoints.getPosts.select();
